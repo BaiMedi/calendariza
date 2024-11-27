@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador para Crear tu Calendario de Contenidos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #432246;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        h1, h2 {
+            color: #00344B;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            border-radius: 5px;
+            color: #388e3c;
+            font-weight: bold;
+        }
+        .cta-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .cta-container p {
+            color: #00344B;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .cta-container a {
+            display: inline-block;
+            background-color: #00DC42;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 15px 25px;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .cta-container a:hover {
+            background-color: #00c03a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Simulador para Crear tu Calendario de Contenidos</h1>
+        <p>Usa este simulador para organizar tus publicaciones y maximizar tu presencia online.</p>
+
+        <form id="calendar-form">
+            <label for="topics">¿Qué temas quieres cubrir en tus publicaciones?</label>
+            <input type="text" id="topics" placeholder="Ejemplo: Marketing, emprendimiento, productividad">
+
+            <label for="frequency">¿Cuántas publicaciones quieres hacer por semana?</label>
+            <input type="number" id="frequency" placeholder="Ejemplo: 3">
+
+            <button type="button" onclick="generateCalendar()">Generar Calendario</button>
+        </form>
+
+        <div id="result" class="result" style="display: none;"></div>
+
+        <div class="cta-container">
+            <p>¿CAMPO DE JUEGO O MINA DE ORO?</p>
+            <a href="https://klicana.work/ykEi0H" target="_blank">SÍ, INSCRIBIRME AHORA EN MISIÓN GESTOR RRSS</a>
+        </div>
+    </div>
+
+    <script>
+        function generateCalendar() {
+            const topics = document.getElementById("topics").value.trim();
+            const frequency = parseInt(document.getElementById("frequency").value, 10);
+
+            if (!topics || isNaN(frequency) || frequency <= 0) {
+                document.getElementById("result").style.display = "block";
+                document.getElementById("result").textContent = "Por favor, completa todos los campos para generar tu calendario.";
+                return;
+            }
+
+            const topicArray = topics.split(",").map(topic => topic.trim());
+            const days = ["Lunes", "Miércoles", "Viernes", "Domingo"];
+            let calendar = `<strong>Calendario Propuesto:</strong><ul>`;
+
+            for (let i = 0; i < frequency; i++) {
+                const day = days[i % days.length];
+                const topic = topicArray[i % topicArray.length];
+                calendar += `<li>${day}: Publicación sobre "${topic}"</li>`;
+            }
+
+            calendar += `</ul>`;
+
+            document.getElementById("result").style.display = "block";
+            document.getElementById("result").innerHTML = calendar;
+        }
+    </script>
+</body>
+</html>
+
